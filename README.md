@@ -1,2 +1,1 @@
-# Color-routine-kit
-mimiced by color routine kit
+# 컬러루틴키트 클론코딩
