@@ -10,145 +10,155 @@
 </head>
 
 <body>
-    <header>
-        <form id="date-form">
-            <span>Date</span>
-            <input type="text" />
-        </form>
-        <form id="weekname-form">
-            <span>나의 일주일에 이름을 붙혀주세요.</span>
-            <input type="text" />
-        </form>
-        <div class="color-list">
-            List
-            <div class="color-list__color-component">
-                <label class="color-list__color-component--color">
-                    <div class="color-box basicDiv">
-                        <div></div>
-                    </div>
-                    <input type="color" class="hidden" list="color-option-01" />
-                    <datalist id="color-option-01">
-                        <option value="#DFE7FF"></option>
-                        <option value="#FFBC2F"></option>
-                        <option value="#FF7145"></option>
-                        <option value="#FFB286"></option>
-                        <option value="#FF60D7"></option>
-                        <option value="#76FFE9"></option>
-                        <option value="#00735D"></option>
-                        <option value="#70D3FF"></option>
-                        <option value="#3D8CFF"></option>
-                        <option value="#7745FF"></option>
-                    </datalist>
-                </label>
-                <input type="text" class="color-component__input--routine"/>
+    <div id="color-routine-kit">
+        <header>
+
+            <div class="color-routine-kit__info">
+                <form id="date-form">
+                    <div class="info__title--date color-routine-kit__title">DATE</div>
+                    <input type="text" class="info__date-form--input" />
+                </form>
+                <form id="weekname-form">
+                    <span class="info__title--naming color-routine-kit__title">나의 일주일에 이름을 붙혀주세요.</span>
+                    <input type="text" />
+                </form>
             </div>
-            <div class="color-list__color-component">
-                <label class="color-list__color-component--color">
-                    <div class="color-box basicDiv">
-                        <div></div>
-                    </div>
-                    <input type="color" class="hidden" list="color-option-02" />
-                    <datalist id="color-option-02">
-                        <option value="#DFE7FF"></option>
-                        <option value="#FFBC2F"></option>
-                        <option value="#FF7145"></option>
-                        <option value="#FFB286"></option>
-                        <option value="#FF60D7"></option>
-                        <option value="#76FFE9"></option>
-                        <option value="#00735D"></option>
-                        <option value="#70D3FF"></option>
-                        <option value="#3D8CFF"></option>
-                        <option value="#7745FF"></option>
-                    </datalist>
-                </label>
-                <input type="text" class="color-component__input--routine"/>
+
+            <div class="color-list">
+                <div class="color-list__title color-routine-kit__title">LIST</div>
+                <div class="color-list__color-component">
+                    <label class="color-list__color-component--color">
+                        <div class="color-box basicDiv">
+                            <div></div>
+                        </div>
+                        <input type="color" class="hidden" list="color-option-01" />
+                        <datalist id="color-option-01">
+                            <option value="#DFE7FF"></option>
+                            <option value="#FFBC2F"></option>
+                            <option value="#FF7145"></option>
+                            <option value="#FFB286"></option>
+                            <option value="#FF60D7"></option>
+                            <option value="#76FFE9"></option>
+                            <option value="#00735D"></option>
+                            <option value="#70D3FF"></option>
+                            <option value="#3D8CFF"></option>
+                            <option value="#7745FF"></option>
+                        </datalist>
+                    </label>
+                    <input type="text" class="color-component__input--text" maxlength="12" />
+                </div>
+                <div class="color-list__color-component">
+                    <label class="color-list__color-component--color">
+                        <div class="color-box basicDiv">
+                            <div></div>
+                        </div>
+                        <input type="color" class="hidden" list="color-option-02" />
+                        <datalist id="color-option-02">
+                            <option value="#DFE7FF"></option>
+                            <option value="#FFBC2F"></option>
+                            <option value="#FF7145"></option>
+                            <option value="#FFB286"></option>
+                            <option value="#FF60D7"></option>
+                            <option value="#76FFE9"></option>
+                            <option value="#00735D"></option>
+                            <option value="#70D3FF"></option>
+                            <option value="#3D8CFF"></option>
+                            <option value="#7745FF"></option>
+                        </datalist>
+                    </label>
+                    <input type="text" class="color-component__input--text" maxlength="12" />
+                </div>
+                <div class="color-list__color-component">
+                    <label class="color-list__color-component--color">
+                        <div class="color-box basicDiv">
+                            <div></div>
+                        </div>
+                        <input type="color" class="hidden" list="color-option-01" />
+                        <datalist id="color-option-01">
+                            <option value="#DFE7FF"></option>
+                            <option value="#FFBC2F"></option>
+                            <option value="#FF7145"></option>
+                            <option value="#FFB286"></option>
+                            <option value="#FF60D7"></option>
+                            <option value="#76FFE9"></option>
+                            <option value="#00735D"></option>
+                            <option value="#70D3FF"></option>
+                            <option value="#3D8CFF"></option>
+                            <option value="#7745FF"></option>
+                        </datalist>
+                    </label>
+                    <input type="text" class="color-component__input--text" maxlength="12" />
+                </div>
+                <div class="color-list__color-component">
+                    <label class="color-list__color-component--color">
+                        <div class="color-box basicDiv">
+                            <div></div>
+                        </div>
+                        <input type="color" class="hidden" list="color-option-02" />
+                        <datalist id="color-option-02">
+                            <option value="#DFE7FF"></option>
+                            <option value="#FFBC2F"></option>
+                            <option value="#FF7145"></option>
+                            <option value="#FFB286"></option>
+                            <option value="#FF60D7"></option>
+                            <option value="#76FFE9"></option>
+                            <option value="#00735D"></option>
+                            <option value="#70D3FF"></option>
+                            <option value="#3D8CFF"></option>
+                            <option value="#7745FF"></option>
+                        </datalist>
+                    </label>
+                    <input type="text" class="color-component__input--text" maxlength="12" />
+                </div>
+                <div class="color-list__color-component">
+                    <label class="color-list__color-component--color">
+                        <div class="color-box basicDiv">
+                            <div></div>
+                        </div>
+                        <input type="color" class="hidden" list="color-option-01" />
+                        <datalist id="color-option-01">
+                            <option value="#DFE7FF"></option>
+                            <option value="#FFBC2F"></option>
+                            <option value="#FF7145"></option>
+                            <option value="#FFB286"></option>
+                            <option value="#FF60D7"></option>
+                            <option value="#76FFE9"></option>
+                            <option value="#00735D"></option>
+                            <option value="#70D3FF"></option>
+                            <option value="#3D8CFF"></option>
+                            <option value="#7745FF"></option>
+                        </datalist>
+                    </label>
+                    <input type="text" class="color-component__input--text" maxlength="12" />
+                </div>
+                <div class="color-list__color-component">
+                    <label class="color-list__color-component--color">
+                        <div class="color-box basicDiv">
+                            <div></div>
+                        </div>
+                        <input type="color" class="hidden" list="color-option-02" />
+                        <datalist id="color-option-02">
+                            <option value="#DFE7FF"></option>
+                            <option value="#FFBC2F"></option>
+                            <option value="#FF7145"></option>
+                            <option value="#FFB286"></option>
+                            <option value="#FF60D7"></option>
+                            <option value="#76FFE9"></option>
+                            <option value="#00735D"></option>
+                            <option value="#70D3FF"></option>
+                            <option value="#3D8CFF"></option>
+                            <option value="#7745FF"></option>
+                        </datalist>
+                    </label>
+                    <input type="text" class="color-component__input--text" maxlength="12" />
+                </div>
             </div>
-            <div class="color-list__color-component">
-                <label class="color-list__color-component--color">
-                    <div class="color-box basicDiv">
-                        <div></div>
-                    </div>
-                    <input type="color" class="hidden" list="color-option-01" />
-                    <datalist id="color-option-01">
-                        <option value="#DFE7FF"></option>
-                        <option value="#FFBC2F"></option>
-                        <option value="#FF7145"></option>
-                        <option value="#FFB286"></option>
-                        <option value="#FF60D7"></option>
-                        <option value="#76FFE9"></option>
-                        <option value="#00735D"></option>
-                        <option value="#70D3FF"></option>
-                        <option value="#3D8CFF"></option>
-                        <option value="#7745FF"></option>
-                    </datalist>
-                </label>
-                <input type="text" class="color-component__input--routine"/>
-            </div>
-            <div class="color-list__color-component">
-                <label class="color-list__color-component--color">
-                    <div class="color-box basicDiv">
-                        <div></div>
-                    </div>
-                    <input type="color" class="hidden" list="color-option-02" />
-                    <datalist id="color-option-02">
-                        <option value="#DFE7FF"></option>
-                        <option value="#FFBC2F"></option>
-                        <option value="#FF7145"></option>
-                        <option value="#FFB286"></option>
-                        <option value="#FF60D7"></option>
-                        <option value="#76FFE9"></option>
-                        <option value="#00735D"></option>
-                        <option value="#70D3FF"></option>
-                        <option value="#3D8CFF"></option>
-                        <option value="#7745FF"></option>
-                    </datalist>
-                </label>
-                <input type="text" class="color-component__input--routine"/>
-            </div>
-            <div class="color-list__color-component">
-                <label class="color-list__color-component--color">
-                    <div class="color-box basicDiv">
-                        <div></div>
-                    </div>
-                    <input type="color" class="hidden" list="color-option-01" />
-                    <datalist id="color-option-01">
-                        <option value="#DFE7FF"></option>
-                        <option value="#FFBC2F"></option>
-                        <option value="#FF7145"></option>
-                        <option value="#FFB286"></option>
-                        <option value="#FF60D7"></option>
-                        <option value="#76FFE9"></option>
-                        <option value="#00735D"></option>
-                        <option value="#70D3FF"></option>
-                        <option value="#3D8CFF"></option>
-                        <option value="#7745FF"></option>
-                    </datalist>
-                </label>
-                <input type="text" class="color-component__input--routine"/>
-            </div>
-            <div class="color-list__color-component">
-                <label class="color-list__color-component--color">
-                    <div class="color-box basicDiv">
-                        <div></div>
-                    </div>
-                    <input type="color" class="hidden" list="color-option-02" />
-                    <datalist id="color-option-02">
-                        <option value="#DFE7FF"></option>
-                        <option value="#FFBC2F"></option>
-                        <option value="#FF7145"></option>
-                        <option value="#FFB286"></option>
-                        <option value="#FF60D7"></option>
-                        <option value="#76FFE9"></option>
-                        <option value="#00735D"></option>
-                        <option value="#70D3FF"></option>
-                        <option value="#3D8CFF"></option>
-                        <option value="#7745FF"></option>
-                    </datalist>
-                </label>
-                <input type="text" class="color-component__input--routine"/>
-            </div>
-        </div>
-    </header>
+        </header>
+        <main></main>
+        <footer></footer>
+    </div>
+
+    <div id="shortcut-link"></div>
 </body>
 
 </html>

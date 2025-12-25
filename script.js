@@ -1,3 +1,5 @@
+/* ==== List 기능 ==== */
+
 const colorComponents = document.querySelectorAll(".color-list__color-component");
 const chosenColorInput_01 = colorComponents[0].querySelector("label input[type=color]");
 const chosenColorBox_01 = colorComponents[0].querySelector("label div.color-box");
@@ -30,3 +32,6 @@ chosenColorInput_03.addEventListener("change",()=>{ handleSelectColor(chosenColo
 chosenColorInput_04.addEventListener("change",()=>{ handleSelectColor(chosenColorInput_04, chosenColorBox_04); });
 chosenColorInput_05.addEventListener("change",()=>{ handleSelectColor(chosenColorInput_05, chosenColorBox_05); });
 chosenColorInput_06.addEventListener("change",()=>{ handleSelectColor(chosenColorInput_06, chosenColorBox_06); });
+
+
+/* ====  ==== */
