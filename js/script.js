@@ -33,5 +33,3 @@ chosenColorInput_04.addEventListener("change",()=>{ handleSelectColor(chosenColo
 chosenColorInput_05.addEventListener("change",()=>{ handleSelectColor(chosenColorInput_05, chosenColorBox_05); });
 chosenColorInput_06.addEventListener("change",()=>{ handleSelectColor(chosenColorInput_06, chosenColorBox_06); });
 
-
-/* ====  ==== */
