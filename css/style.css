@@ -23,15 +23,15 @@
 #color-routine-kit{
     position: absolute;
     left: 340px;
-    height: 100vh;
     /*== 전체 너비 ==*/
     width: calc(var(--info-box) + var(--default-size)*4*6); /* 변수 조작 필요 */
     /*============*/
+    backdrop-filter:blur(5px);
 
 }
 header,main,footer{
     margin-top: var(--default-size);
-    backdrop-filter:blur(5px);
+    
 
 }
 main{
@@ -93,7 +93,7 @@ input {
     align-items: center;
     width: var(--default-size); 
     height: var(--default-size);
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid;
     box-sizing: border-box;
 }
 .color-dot {
@@ -104,21 +104,19 @@ input {
 
 
 
-/* ==== Date, 일주일 네이밍 ====*/
+/* ==== clock, 일주일 네이밍 ====*/
 .color-routine-kit__info{
     display: flex;
     justify-content: space-between;
     margin-bottom: var(--default-size);
 }
-.info__date-form--input{
-    width: calc(var(--default-size)*5);
-    
-}
 .info__weekname-form--input{
     width: calc(var(--default-size)*4);
 }
-#date-form{
-    display: flex;
+#clock{
+    width: calc(var(--default-size)*5);
+    font-size: 32px;
+    border: 1px solid;
 }
 #weekname-form{
     display: flex;
@@ -165,7 +163,7 @@ input {
     height: var(--default-size);
 }
 .time-row__routine:hover{
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(106, 106, 106, 0.2);
 }
 .routine-row__date{
     border-right: 1px solid;
