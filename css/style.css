@@ -162,9 +162,9 @@ input {
     width: calc(var(--default-size)/2);
     height: var(--default-size);
 }
-.time-row__routine:hover{
-    background-color: rgba(106, 106, 106, 0.2);
-}
+/* .time-row__routine:hover{
+    background-color: rgba(100, 100, 100, 0.2);
+} */
 .routine-row__date{
     border-right: 1px solid;
 }
