@@ -1,110 +1,57 @@
-/*================================
-List 기능
-=================================*/
+const colorPalette_colors = document.querySelectorAll(".colors__color");
+const colorBoxs = document.querySelectorAll(".color-box");
 
-const colorComponents = document.querySelectorAll(".color-list__color-component");
-const chosenColorInput_01 = colorComponents[0].querySelector("label input[type=color]");
-const chosenColorBox_01 = colorComponents[0].querySelector("label div.color-box");
+/** 컬러 dots*/
+const colorDots = document.querySelectorAll(".color-box div");
 
-const chosenColorInput_02 = colorComponents[1].querySelector("label input[type=color]");
-const chosenColorBox_02 = colorComponents[1].querySelector("label div.color-box");
+/** 컬러 리스트 */
+let colorList = [];
 
-const chosenColorInput_03 = colorComponents[2].querySelector("label input[type=color]");
-const chosenColorBox_03 = colorComponents[2].querySelector("label div.color-box");
-
-const chosenColorInput_04 = colorComponents[3].querySelector("label input[type=color]");
-const chosenColorBox_04 = colorComponents[3].querySelector("label div.color-box");
-
-const chosenColorInput_05 = colorComponents[4].querySelector("label input[type=color]");
-const chosenColorBox_05 = colorComponents[4].querySelector("label div.color-box");
-
-const chosenColorInput_06 = colorComponents[5].querySelector("label input[type=color]");
-const chosenColorBox_06 = colorComponents[5].querySelector("label div.color-box");
-
-const KEY_COLORS = "colors";
+/** 로컬저장소 key값: current color */
 const KEY_CURRENT_COLOR = "current color";
+/** 로컬저장소 key값: colorList */
+const KEY_COLOR_LIST = "colorList";
 
-let defaultColors = ["", "", "", "", "", ""];
-localStorage.setItem(KEY_CURRENT_COLOR, "#00000067");
+function handleClickedCurrentColor(colorPalette) {
+    // 컬러 팔레트에서 클릭한 색상 저장
+    const currentColor = colorPalette.style.backgroundColor;
+    localStorage.setItem(KEY_CURRENT_COLOR, currentColor);
 
-function showColor(color, colorLocation) {
-    /*  const chosenColor = colorinput.value; */
-    const colorDot = colorLocation.querySelector("div");
-    colorDot.classList.add("color-dot");
-    colorDot.style.backgroundColor = color;
+
+    /* console.log(`current color: ${currentColor}`); */
 }
+function handleClickedColorBox(colorDot) {
+    // 선택한 colorDot의 색깔은 current color
+    colorDot.style.backgroundColor = localStorage.getItem(KEY_CURRENT_COLOR);
 
-function handleSelectColor(colorinput, colorLocation) {
-
-    const chosenColor = colorinput.value;
-
-    if (colorinput == chosenColorInput_01) {
-        defaultColors[0] = chosenColor;
-    }
-    if (colorinput == chosenColorInput_02) {
-        defaultColors[1] = chosenColor;
-    }
-    if (colorinput == chosenColorInput_03) {
-        defaultColors[2] = chosenColor;
-    }
-    if (colorinput == chosenColorInput_04) {
-        defaultColors[3] = chosenColor;
-    }
-    if (colorinput == chosenColorInput_05) {
-        defaultColors[4] = chosenColor;
-    }
-    if (colorinput == chosenColorInput_06) {
-        defaultColors[5] = chosenColor;
-    }
-    localStorage.setItem(KEY_CURRENT_COLOR, chosenColor);
-
-    showColor(chosenColor, colorLocation);
-
-    localStorage.setItem(KEY_COLORS, JSON.stringify(defaultColors));
-
-
-}
-
-function chooseColor(colorinput, colorLocation) {
-    colorinput.addEventListener("click", () => {
-        localStorage.setItem(KEY_CURRENT_COLOR, colorinput.value);
-        colorinput.addEventListener("change", () => {
-            handleSelectColor(colorinput, colorLocation);
-        });
+    /* 선택한 색깔을 colorList에 추가할 때마다 모든 colorDot의 색깔이 semiColorList에 저장,
+    semiColorList의 값으로 colorList를 교체한다. */
+    const semiColorList = [];
+    colorDots.forEach((colorDot) => {
+        semiColorList.push(colorDot.style.backgroundColor);
     });
+    colorList = semiColorList;
+    localStorage.setItem(KEY_COLOR_LIST, JSON.stringify(colorList));
+
+
+    /* console.log(`colorList: ${JSON.stringify(colorList)}`); */
 }
 
-chooseColor(chosenColorInput_01, chosenColorBox_01);
-chooseColor(chosenColorInput_02, chosenColorBox_02);
-chooseColor(chosenColorInput_03, chosenColorBox_03);
-chooseColor(chosenColorInput_04, chosenColorBox_04);
-chooseColor(chosenColorInput_05, chosenColorBox_05);
-chooseColor(chosenColorInput_06, chosenColorBox_06);
-
-const savedColors = JSON.parse(localStorage.getItem(KEY_COLORS));
-
-if (savedColors !== null) {
-    showColor(savedColors[0], chosenColorBox_01);
-    showColor(savedColors[1], chosenColorBox_02);
-    showColor(savedColors[2], chosenColorBox_03);
-    showColor(savedColors[3], chosenColorBox_04);
-    showColor(savedColors[4], chosenColorBox_05);
-    showColor(savedColors[5], chosenColorBox_06);
-    defaultColors = savedColors;
-    localStorage.setItem(KEY_COLORS, JSON.stringify(savedColors));
-
-}
-else {
-    localStorage.setItem(KEY_COLORS, JSON.stringify(defaultColors));
-}
-
-const routineBoxs = document.querySelectorAll(".time-row__routine");
-
-routineBoxs.forEach((routineBox) => {
-
-    routineBox.addEventListener("mouseenter", () => {
-        const currentColor = localStorage.getItem(KEY_CURRENT_COLOR);
-        routineBox.style.backgroundColor = currentColor;
+colorPalette_colors.forEach((colorPalette_color) => {
+    colorPalette_color.addEventListener("click", () => {
+        handleClickedCurrentColor(colorPalette_color);
     });
-
 });
+colorBoxs.forEach((colorBox) => {
+    const colorDot = colorBox.querySelector("div");
+    colorBox.addEventListener("click", () => {
+        handleClickedColorBox(colorDot);
+    });
+});
+
+const savedColorList = JSON.parse(localStorage.getItem(KEY_COLOR_LIST));
+if (savedColorList !== null) {
+    for (let i = 0; i < 6; i++) {
+        colorDots[i].style.backgroundColor = savedColorList[i];
+    }
+}

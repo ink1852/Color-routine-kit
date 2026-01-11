@@ -4,6 +4,7 @@
 :root{
     /* 기본 단위 */
     --default-size: 45px;
+    --default-color: #00000001;
     --info-box: calc((var(--default-size)/2)*3);
 }
 
@@ -17,7 +18,6 @@
     left: 0;
     width: 100%;
     height: 100vh;
-   
     z-index: -99;
 }
 #color-routine-kit{
@@ -31,14 +31,13 @@
 }
 header,main,footer{
     margin-top: var(--default-size);
-    
-
 }
 main{
     
 }
 footer{
-    height: 280px;
+    position: relative;
+    height: calc(var(--default-size)*5);
     border: 1px solid;
 }
 input {
@@ -95,13 +94,16 @@ input {
     height: var(--default-size);
     border: 1px solid;
     box-sizing: border-box;
+    background-color: var(--default-color);
 }
 .color-dot {
     width: calc((var(--default-size)/4)*3);
     height: calc((var(--default-size)/4)*3);
     border-radius: 20%;
 }
-
+.color-box:hover{
+    cursor: pointer;
+}
 
 
 /* ==== clock, 일주일 네이밍 ====*/
@@ -168,3 +170,62 @@ input {
 .routine-row__date{
     border-right: 1px solid;
 }
+
+
+
+/* ==== 컬러 ==== */
+#colors{
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+
+    padding: 8px;
+    margin: 8px;
+    box-sizing: border-box;
+
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+   
+    display: flex;
+}
+.colors__color{
+    width: var(--default-size);
+    height: var(--default-size);
+    border-radius: 8px;
+    margin: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+.colors__color:hover{
+    cursor: pointer;
+    scale: 1.02;
+}
+/* .colors__color:nth-child(1){
+    background-color:darkcyan;
+}
+.colors__color:nth-child(2){
+    background-color: lightgrey;
+}
+.colors__color:nth-child(3){
+    background-color: skyblue;
+}
+.colors__color:nth-child(4){
+    background-color: pink;
+}
+.colors__color:nth-child(5){
+    background-color: lightgreen;
+}
+.colors__color:nth-child(6){
+    background-color:bisque;
+}
+.colors__color:nth-child(7){
+    background-color: darkorchid;
+}
+.colors__color:nth-child(8){
+    background-color: lightgoldenrodyellow;
+}
+.colors__color:nth-child(9){
+    background-color: darkorange;
+}
+.colors__color:nth-child(10){
+    background-color: cornflowerblue;
+} */
