@@ -9,15 +9,13 @@
 }
 
 /* ==== Default ==== */
-/* *{
-    color: aliceblue;
-} */
 .background-img-style{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
+    filter: blur(4px);
     z-index: -99;
 }
 #color-routine-kit{
@@ -26,14 +24,11 @@
     /*== 전체 너비 ==*/
     width: calc(var(--info-box) + var(--default-size)*4*6); /* 변수 조작 필요 */
     /*============*/
-    backdrop-filter:blur(5px);
+    /* backdrop-filter:blur(0px); */
 
 }
 header,main,footer{
     margin-top: var(--default-size);
-}
-main{
-    
 }
 footer{
     position: relative;
@@ -43,18 +38,22 @@ footer{
 input {
     margin: 0;
     padding: 0;
+
     /*== input 기본 단위 ==*/
     width: calc(var(--default-size)*3);
     height: var(--default-size);
     /*================*/
+
     outline: none;
     border: none;
-    border: 1px solid; /* rgba(255,255,255,0.3);
-    border-bottom: 2px solid black; */
+    border: 1px solid;
+
     background: none;
     text-align: center;
+
     font-size: 16px;
     font-weight: bold;
+
     box-sizing: border-box;
 }
 .hidden {
@@ -67,7 +66,6 @@ input {
     align-items: center;
     width: var(--info-box);
     height: var(--default-size);
-    /* background-color: rgb(181, 125, 51); */
     font-size: 16px;
 }
 
@@ -173,8 +171,8 @@ input {
 
 
 
-/* ==== 컬러 ==== */
-#colors{
+/* ==== 컬러 팔레트 ==== */
+#color-palette{
     position: absolute;
     bottom: 0;
     height: 80px;
@@ -187,45 +185,36 @@ input {
     border-radius: 8px;
    
     display: flex;
+    align-items: center;
 }
-.colors__color{
+.color-palette__color{
     width: var(--default-size);
     height: var(--default-size);
     border-radius: 8px;
     margin: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: 14px;
 }
-.colors__color:hover{
+.color-palette__color:hover{
     cursor: pointer;
     scale: 1.02;
 }
-/* .colors__color:nth-child(1){
-    background-color:darkcyan;
+#current-color{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: var(--default-size);
+    margin-left: 10px;
+
+    border-radius: 10px;
+    padding: 0 10px;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
 }
-.colors__color:nth-child(2){
-    background-color: lightgrey;
-}
-.colors__color:nth-child(3){
-    background-color: skyblue;
-}
-.colors__color:nth-child(4){
-    background-color: pink;
-}
-.colors__color:nth-child(5){
-    background-color: lightgreen;
-}
-.colors__color:nth-child(6){
-    background-color:bisque;
-}
-.colors__color:nth-child(7){
-    background-color: darkorchid;
-}
-.colors__color:nth-child(8){
-    background-color: lightgoldenrodyellow;
-}
-.colors__color:nth-child(9){
-    background-color: darkorange;
-}
-.colors__color:nth-child(10){
-    background-color: cornflowerblue;
-} */
