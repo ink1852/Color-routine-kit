@@ -1,6 +1,6 @@
 const colorPalette_colors = document.querySelectorAll(".color-palette__color");
 const colorBoxs = document.querySelectorAll(".color-box");
-const routine_boxs = document.querySelectorAll(".time-row__routine");
+const routine_boxs = document.querySelectorAll(".routine-box");
 
 /** 컬러 dots*/
 const colorDots = document.querySelectorAll(".color-box div");
@@ -79,32 +79,30 @@ if (savedColorList !== null) {
 
 
 /* =============================
-    컬러루틴
+    컬러루틴 - 이 부분 코드 리뷰좀
 ============================= */
 routine_boxs.forEach((routine_box) => {
 
     routine_box.addEventListener("mousedown", () => {
-        console.log("!");
+        console.log("루틴 시작");
+        painting(routine_box);
         localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, true);
-        painting(routine_box);
     });
 
-    routine_box.addEventListener("mouseup", () => {
-        console.log("!!!");
-        localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
-        painting(routine_box);
-    });
-
-    /* =============================
-        컬러루틴 - 이 부분 코드 리뷰좀
-    ============================= */
     routine_box.addEventListener("mouseenter", () => {
         const routineBoxMousedown = JSON.parse(localStorage.getItem(KEY_ROUTINE_BOX_MOUSEDOWN));
-        if (routineBoxMousedown) {
-            console.log("!!");
+        if (routineBoxMousedown == true) {
+            console.log("루틴 그리는 중");
             painting(routine_box);
         }
     });
 
+    routine_box.addEventListener("mouseup", () => {
+        console.log("루틴 끝");
+        painting(routine_box);
+        localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
+    });
+
 });
+
 

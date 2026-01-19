@@ -1,5 +1,9 @@
 @import "reset.css";
 
+/* * {
+    color: aliceblue;
+} */
+
 
 :root{
     /* 기본 단위 */
@@ -32,7 +36,7 @@ header,main,footer{
 }
 footer{
     position: relative;
-    height: calc(var(--default-size)*5);
+    height: calc(var(--default-size)*6);
     border: 1px solid;
 }
 input {
@@ -65,8 +69,10 @@ input {
     justify-content: center;
     align-items: center;
     width: var(--info-box);
-    height: var(--default-size);
+    height: var(--default-size) - 1px; /* border 이슈 때문에 1px 불여야 됨*/
     font-size: 16px;
+
+    box-sizing: border-box;
 }
 
 
@@ -110,19 +116,29 @@ input {
     justify-content: space-between;
     margin-bottom: var(--default-size);
 }
-.info__weekname-form--input{
-    width: calc(var(--default-size)*4);
-}
-#clock{
-    width: calc(var(--default-size)*5);
+.color-routine-kit__info--color-routine-kit{
+    width: calc(var(--default-size)*8);
     font-size: 32px;
     border: 1px solid;
+    font-family:'Times New Roman';
+}
+
+#clock{
+    position: relative;
+    bottom: 2px;
+
+    width: calc(var(--default-size)*5);
+    font-size: 40px;
 }
 #weekname-form{
     display: flex;
+    align-items: center;
 }
-.info__title--week-naming{
+#weekname-form span{
     width: calc(var(--default-size)*6);
+}
+#weekname-form input{
+    width: calc(var(--default-size)*4);
 }
 
 
@@ -135,6 +151,7 @@ input {
     display: flex;
     border: 1px solid;
     box-sizing: border-box;
+    /* margin-bottom: 1px; */
 }
 
 
@@ -142,6 +159,7 @@ input {
 .time-row__hours{
     width: var(--default-size);
     height: var(--default-size);
+
     display: flex;
     align-items: center;
     justify-content: end;
@@ -158,16 +176,16 @@ input {
 
 
 /* ==== 루틴 시간표 - 루틴 ==== */
-.time-row__routine{
+.routine-box{
     width: calc(var(--default-size)/2);
-    height: var(--default-size);
+    height: var(--default-size) - 1px; /* border 이슈 때문에 1px 불여야 됨*/
+    
+    box-sizing: border-box;
 }
-/* .time-row__routine:hover{
-    background-color: rgba(100, 100, 100, 0.2);
-} */
-.routine-row__date{
-    border-right: 1px solid;
+.routine-box:nth-of-type(odd){
+    border-left: 1px solid;
 }
+
 
 
 
