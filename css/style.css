@@ -1,9 +1,8 @@
 @import "reset.css";
 
-/* * {
-    color: aliceblue;
-} */
-
+span{
+    user-select: none;
+}
 
 :root{
     /* 기본 단위 */
@@ -25,10 +24,10 @@
 #color-routine-kit{
     position: absolute;
     left: 340px;
+
     /*== 전체 너비 ==*/
-    width: calc(var(--info-box) + var(--default-size)*4*6); /* 변수 조작 필요 */
+    width: calc(var(--info-box) + var(--default-size)*4*6);
     /*============*/
-    /* backdrop-filter:blur(0px); */
 
 }
 header,main,footer{
@@ -69,7 +68,7 @@ input {
     justify-content: center;
     align-items: center;
     width: var(--info-box);
-    height: var(--default-size) - 1px; /* border 이슈 때문에 1px 불여야 됨*/
+    height: var(--default-size) - 1px; /* border 이슈 때문에 1px 빼야 됨*/
     font-size: 16px;
 
     box-sizing: border-box;
@@ -118,11 +117,12 @@ input {
 }
 .color-routine-kit__info--color-routine-kit{
     width: calc(var(--default-size)*8);
-    font-size: 32px;
     border: 1px solid;
+}
+.color-routine-kit__info--color-routine-kit span{
+    font-size: 32px;
     font-family:'Times New Roman';
 }
-
 #clock{
     position: relative;
     bottom: 2px;
@@ -144,17 +144,13 @@ input {
 
 
 /* ==== 루틴 시간표 ==== */
-.color-routine-kit__row{
+.color-routine-kit-row{
     width: 100%;
     height: var(--default-size);
-   /*  background-color: aliceblue; */
     display: flex;
     border: 1px solid;
     box-sizing: border-box;
-    /* margin-bottom: 1px; */
 }
-
-
 /* ==== 루틴 시간표 - 시간 ==== */
 .time-row__hours{
     width: var(--default-size);
@@ -163,6 +159,8 @@ input {
     display: flex;
     align-items: center;
     justify-content: end;
+
+    user-select: none;
 }
 .time-row__hours--number1to9{
     position: relative;
@@ -174,18 +172,22 @@ input {
 }
 
 
-
 /* ==== 루틴 시간표 - 루틴 ==== */
+.color-routine-kit-row__date{
+    user-select: none;
+}
+.color-routine-kit-row__routine-boxs{
+    display: flex;
+}
 .routine-box{
+    cursor: pointer;
+    box-sizing: border-box; 
     width: calc(var(--default-size)/2);
-    height: var(--default-size) - 1px; /* border 이슈 때문에 1px 불여야 됨*/
-    
-    box-sizing: border-box;
+    height: var(--default-size) - 1px; /* border 이슈 때문에 1px 빼야 됨*/
 }
 .routine-box:nth-of-type(odd){
     border-left: 1px solid;
 }
-
 
 
 
@@ -215,16 +217,47 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    color: white;
+}
+.color-palette__color span{
+    color: rgb(255, 255, 255);
     font-size: 14px;
 }
+/* .color-palette__color:nth-child(1){
+    background-color: rgb(0, 139, 139);
+}
+.color-palette__color:nth-child(2){
+    background-color: rgb(174, 174, 174);
+}
+.color-palette__color:nth-child(3){
+    background-color: rgb(135, 206, 235);
+}
+.color-palette__color:nth-child(4){
+    background-color: rgb(255, 173, 187);
+}
+.color-palette__color:nth-child(5){
+    background-color: rgb(144, 238, 144);
+}
+.color-palette__color:nth-child(6){
+    background-color: rgb(255, 228, 196);
+}
+.color-palette__color:nth-child(7){
+    background-color: rgb(153, 50, 204);
+}
+.color-palette__color:nth-child(8){
+    background-color: rgb(250, 250, 210);
+}
+.color-palette__color:nth-child(9){
+    background-color: rgb(255, 140, 0);
+}
+.color-palette__color:nth-child(10){
+    background-color: rgb(76, 137, 250);
+} */
 .color-palette__color:hover{
     cursor: pointer;
     scale: 1.02;
 }
 #current-color{
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     height: var(--default-size);
     margin-left: 10px;
 
