@@ -7,7 +7,7 @@ const colors = [
     "rgb(255, 175, 185)",
     "rgb(144, 230, 145)",
     "rgb(255, 230, 195)",
-    "rgb(153, 50, 204)",
+    "rgb(195, 90, 240)",
     "rgb(255, 255, 150)",
     "rgb(255, 140, 0)",
     "rgb(75, 135, 250)",
@@ -26,10 +26,14 @@ const CSS_SECLECTOR_ROUTINE_BOX = ".routine-box";
 const colorPalette_colors = document.querySelectorAll(".color-palette__color");
 
 
-/** list 옆에 있는 컬러 박스들 */
+/** 컬러 박스들 */
 const colorBoxs = document.querySelectorAll(".color-box");
-/** 컬러 박스에 있는, 실제 색상을 드러낼 컬러dot들*/
+/** 컬러 박스 안에 있는, 실제 색상을 드러낼 컬러dot들*/
 const colorDots = document.querySelectorAll(".color-box div");
+/** 컬러 박스 옆에 있는 인풋 제출용 폼 */
+const listForms = document.querySelectorAll(".color-list-form");
+/** list 인풋들 */
+const colorListInputs = document.querySelectorAll(".color-component__input--text");
 
 
 /** 루틴 행(row)들 */
@@ -37,119 +41,118 @@ const colorRoutineKitRows = document.querySelectorAll(".color-routine-kit-row");
 /** 루틴 박스들 */
 const routine_boxs = document.querySelectorAll(".routine-box");
 // 각 행의 루틴 박스들, colorRoutineKitRows[0]는 시간 행
-const colorRoutineKitRow_01_routineBoxs = colorRoutineKitRows[1].querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
-const colorRoutineKitRow_02_routineBoxs = colorRoutineKitRows[2].querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
+/* const colorRoutineKitRow_01_routineBoxs = colorRoutineKitRows[1].querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
+const colorRoutineKitRow_02_routineBoxs = colorRoutineKitRows[2].querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box"); */
 
 
 
 function 판별식(색깔) {
-    if(색깔 == colors[0]){
+    if(색깔 == colors[0]) {
         return "초록색"
-    }
-    if(색깔 == colors[1]){
+    }else if (색깔 == colors[1]) {
         return "회색"
     }
-    if(색깔 == colors[2]){
+    else if (색깔 == colors[2]) {
         return "하늘색"
     }
-    if(색깔 == colors[3]){
+    else if (색깔 == colors[3]) {
         return "분홍색"
     }
-    if(색깔 == colors[4]){
+    else if (색깔 == colors[4]) {
         return "연두색"
     }
-    if(색깔 == colors[5]){
+    else if (색깔 == colors[5]) {
         return "살구색"
     }
-    if(색깔 == colors[6]){
+    else if (색깔 == colors[6]) {
         return "보라색"
     }
-    if(색깔 == colors[7]){
+    else if (색깔 == colors[7]) {
         return "노란색"
     }
-    if(색깔 == colors[8]){
+    else if (색깔 == colors[8]) {
         return "주황색"
     }
-    if(색깔 == colors[9]){
+    else if (색깔 == colors[9]) {
         return "파란색"
     }
-    if(색깔 == colors[10]){
+    else if (색깔 == colors[10]){
+        return "지우개"
+    }
+    else{
         return "지우개"
     }
 }
 
-
-/* =============================
-    선택한 색깔 표시하기
-============================= */
+/* ===============================================
+    현재 색깔(내가 선택한, 또는 선택했던 색깔) 표시하기
+=============================================== */
 function showCurrentColor() {
     const currentColorText = document.querySelector("#current-color span");
     currentColorText.innerText = `${판별식(localStorage.getItem(KEY_CURRENT_COLOR))}`;
 }
-/* =============================
-    current color로 칠하기
-============================= */
-function paintCurrentColor(container) {
-    container.style.backgroundColor = `${localStorage.getItem(KEY_CURRENT_COLOR)}`;
+
+/* ==================================
+    요소 내부 색깔을 current color로 칠하기
+================================== */
+function paintCurrentColor(element) {
+    element.style.backgroundColor = `${localStorage.getItem(KEY_CURRENT_COLOR)}`;
 }
 
 function saveCurrentColor(index) {
     localStorage.setItem(KEY_CURRENT_COLOR, colors[index]);
 }
-function handleClickedColorBox(colorDot) {
+function handleClicked_colorBox(colorDot) {
     paintCurrentColor(colorDot);
 
-    // 내가 선택했던 모든 colorDot의 색깔을 colorList에 담고 로컬에 저장.
-    const colorList = [];
+    /* 내가 선택했던 모든 colorDot의 색깔을 colorList에 담고 로컬에 저장.*/
+    const array = [];
     colorDots.forEach((colorDot) => {
-        colorList.push(colorDot.style.backgroundColor);
+        array.push(colorDot.style.backgroundColor);
     });
-    localStorage.setItem(KEY_COLOR_LIST, JSON.stringify(colorList));
+    localStorage.setItem(KEY_COLOR_LIST, JSON.stringify(array));
 }
 
 /* =============================
     루틴 저장
 ============================= */
-function saveRoutineRow(day, colorRoutineKitRow_num_routineBoxs) {
-    const semiRoutineList = [];
-    colorRoutineKitRow_num_routineBoxs.forEach((routineBox) => {
-        //선택한 색깔이 지우개가 아니라면 색깔 저장
-        if(routineBox.style.backgroundColor !== ""){
-            semiRoutineList.push(routineBox.style.backgroundColor);
-        }else{
-            semiRoutineList.push("0");
+function saveRoutineRow() {
+    localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
+    colorRoutineKitRows.forEach((colorRoutineKitRow, index)=>{
+        if (index !== 0) { // colorRoutineKitRow[0]은 시간 행이라 빼고 저장
+            const routineList = [];
+            const colorRoutineKitRow_routineBoxs = colorRoutineKitRow.querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
+            colorRoutineKitRow_routineBoxs.forEach((routineBox) => {
+                if (routineBox.style.backgroundColor == "") {
+                    routineList.push(""); //선택한 색깔이 ""(지우개)이면 비워 놓음
+                } else {
+                    routineList.push(routineBox.style.backgroundColor); //아니라면 색깔 저장
+                }
+            });
+            localStorage.setItem(`day${index}`, JSON.stringify(routineList));
         }
-        /* if (routineBox.style.backgroundColor) {
-            semiRoutineList.push("1");
-        }else{
-            semiRoutineList.push("0");
-        } */
     });
-    
 
-    localStorage.setItem(`${day}`, JSON.stringify(semiRoutineList));
-    /* console.log(`${day}: ${semiRoutineList}`); */
+
 }
 
 
 /* =============================
     컬러 팔레트 클릭할 때
 ============================= */
-colorPalette_colors.forEach((colorPalette_color, colorPalette_color_index) => {
+colorPalette_colors.forEach((colorPalette_color, index) => {
     colorPalette_color.addEventListener("click", () => {
-        saveCurrentColor(colorPalette_color_index);
+        saveCurrentColor(index);
         showCurrentColor();
     });
 });
-
-
 /* =============================
     컬러 박스 클릭할 때
 ============================= */
 colorBoxs.forEach((colorBox) => {
     const colorDot = colorBox.querySelector("div");
     colorBox.addEventListener("click", () => {
-        handleClickedColorBox(colorDot);
+        handleClicked_colorBox(colorDot);
     });
 });
 
@@ -175,26 +178,40 @@ routine_boxs.forEach((routine_box) => {
         const routineBoxMousedown = JSON.parse(localStorage.getItem(KEY_ROUTINE_BOX_MOUSEDOWN));
         if (routineBoxMousedown == true) {
             console.log("루틴 끝");
-            localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
-
-            saveRoutineRow("day1", colorRoutineKitRow_01_routineBoxs);
-            saveRoutineRow("day2", colorRoutineKitRow_02_routineBoxs);
+            saveRoutineRow();
         }
     });
 });
-
-
-/* =====================================================
-    컬러루틴 - 루틴 그리는 중 다른 행으로 이동시 드래그 취소
-===================================================== */
+/* =============================================================================
+    컬러루틴 - 루틴 그리는 중 다른 행으로 이동시 드래그 취소, 현재 그렸던 루틴까지 저장
+============================================================================= */
 colorRoutineKitRows.forEach((colorRoutineKitRow) => {
     colorRoutineKitRow.addEventListener("mouseleave", () => {
         const routineBoxMousedown = JSON.parse(localStorage.getItem(KEY_ROUTINE_BOX_MOUSEDOWN));
         if (routineBoxMousedown == true) {
             console.log("현재 행을 벗어남");
-            localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
+            saveRoutineRow();
         }
     });
+});
+
+
+/* =========================================
+    list input이 submit됐거나 focus를 잃을 때
+========================================= */
+function handleSubmitOrBlur_saveColorListInput(e) {
+    e.preventDefault();
+    const list_inputsList = [];
+    colorListInputs.forEach((colorListInput) => {
+        list_inputsList.push(colorListInput.value);
+    });
+    localStorage.setItem("list inputs", JSON.stringify(list_inputsList));
+}
+listForms.forEach((colorListForm) => {
+    colorListForm.addEventListener("submit", handleSubmitOrBlur_saveColorListInput);
+});
+colorListInputs.forEach((colorListInput) => {
+    colorListInput.addEventListener("blur", handleSubmitOrBlur_saveColorListInput);
 });
 
 
@@ -203,23 +220,16 @@ colorRoutineKitRows.forEach((colorRoutineKitRow) => {
 ============================= */
 localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
 const savedColorList = JSON.parse(localStorage.getItem(KEY_COLOR_LIST));
+const savedList_inputsList = JSON.parse(localStorage.getItem("list inputs"));
 if (savedColorList !== null) {
-    // 저장된 컬러 리스트와 일대일대응 시키기
+    /* 저장된 컬러 리스트와 일대일대응 시키기 */
     for (let i = 0; i < savedColorList.length; i++) {
         colorDots[i].style.backgroundColor = savedColorList[i];
+        colorListInputs[i].value = savedList_inputsList[i];
     }
 }
 showCurrentColor();
-colorPalette_colors.forEach((colorPalette_color, index)=>{
+/* 컬러 팔레트 색깔들 보여주기 */
+colorPalette_colors.forEach((colorPalette_color, index) => {
     colorPalette_color.style.backgroundColor = colors[index];
 });
-
-const savedColorRoutineKitRow_01_routineBoxs = JSON.parse(localStorage.getItem("day1"));
-for (let i = 0; i < savedColorRoutineKitRow_01_routineBoxs.length; i++) {
-    colorRoutineKitRow_01_routineBoxs[i].style.backgroundColor = savedColorRoutineKitRow_01_routineBoxs[i];
-}
-/* savedColorRoutineKitRow_01_routineBoxs.forEach((routineBox) => {
-    
-}); */
-
-
