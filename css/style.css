@@ -7,18 +7,18 @@ span{
 :root{
     /* 기본 단위 */
     --default-size: 45px;
-    --default-color: #00000001;
+    --default-color: #00000000;
     --info-box: calc((var(--default-size)/2)*3);
 }
 
 /* ==== Default ==== */
-.background-img-style{
+.bg-image{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    filter: blur(4px);
+    filter: blur(5px);
     z-index: -99;
 }
 #color-routine-kit{
@@ -68,7 +68,7 @@ input {
     justify-content: center;
     align-items: center;
     width: var(--info-box);
-    height: var(--default-size) - 1px; /* border 이슈 때문에 1px 빼야 됨*/
+    height: var(--default-size) - 1px; /* border 문제 때문에 1px 빼야 됨*/
     font-size: 16px;
 
     box-sizing: border-box;
@@ -183,7 +183,7 @@ input {
     cursor: pointer;
     box-sizing: border-box; 
     width: calc(var(--default-size)/2);
-    height: var(--default-size) - 1px; /* border 이슈 때문에 1px 빼야 됨*/
+    height: var(--default-size) - 1px; /* border 문제 때문에 1px 빼야 됨*/
 }
 .routine-box:nth-of-type(odd){
     border-left: 1px solid;

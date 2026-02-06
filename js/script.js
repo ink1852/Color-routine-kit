@@ -118,31 +118,29 @@ function handleClicked_colorBox(colorDot) {
 ============================= */
 function saveRoutineRow() {
     localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
-    colorRoutineKitRows.forEach((colorRoutineKitRow, index)=>{
-        if (index !== 0) { // colorRoutineKitRow[0]은 시간 행이라 빼고 저장
+    colorRoutineKitRows.forEach((colorRoutineKitRow, colorRoutineKitRow_index)=>{
+        if (colorRoutineKitRow_index !== 0) { // colorRoutineKitRow[0]은 시간 행이라 빼고 저장
             const routineList = [];
             const colorRoutineKitRow_routineBoxs = colorRoutineKitRow.querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
             colorRoutineKitRow_routineBoxs.forEach((routineBox) => {
                 if (routineBox.style.backgroundColor == "") {
-                    routineList.push(""); //선택한 색깔이 ""(지우개)이면 비워 놓음
+                    routineList.push(""); // ""(지우개)로 저장
                 } else {
-                    routineList.push(routineBox.style.backgroundColor); //아니라면 색깔 저장
+                    routineList.push(routineBox.style.backgroundColor); //선택한 색깔로 저장
                 }
             });
-            localStorage.setItem(`day${index}`, JSON.stringify(routineList));
+            localStorage.setItem(`day${colorRoutineKitRow_index}`, JSON.stringify(routineList));
         }
     });
-
-
 }
 
 
 /* =============================
     컬러 팔레트 클릭할 때
 ============================= */
-colorPalette_colors.forEach((colorPalette_color, index) => {
-    colorPalette_color.addEventListener("click", () => {
-        saveCurrentColor(index);
+colorPalette_colors.forEach((colorPaletteColor, colorPaletteColor_index) => {
+    colorPaletteColor.addEventListener("click", () => {
+        saveCurrentColor(colorPaletteColor_index);
         showCurrentColor();
     });
 });
@@ -160,21 +158,21 @@ colorBoxs.forEach((colorBox) => {
 /* ================================
     컬러루틴 - 루틴 기능
 ================================ */
-routine_boxs.forEach((routine_box) => {
+routine_boxs.forEach((routineBox) => {
 
-    routine_box.addEventListener("mousedown", () => {
+    routineBox.addEventListener("mousedown", () => {
         console.log("루틴 시작");
-        paintCurrentColor(routine_box);
+        paintCurrentColor(routineBox);
         localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, true);
     });
-    routine_box.addEventListener("mouseenter", () => {
+    routineBox.addEventListener("mouseenter", () => {
         const routineBoxMousedown = JSON.parse(localStorage.getItem(KEY_ROUTINE_BOX_MOUSEDOWN));
         if (routineBoxMousedown == true) {
             console.log("루틴 그리는 중");
-            paintCurrentColor(routine_box);
+            paintCurrentColor(routineBox);
         }
     });
-    routine_box.addEventListener("mouseup", () => {
+    routineBox.addEventListener("mouseup", () => {
         const routineBoxMousedown = JSON.parse(localStorage.getItem(KEY_ROUTINE_BOX_MOUSEDOWN));
         if (routineBoxMousedown == true) {
             console.log("루틴 끝");
@@ -215,12 +213,16 @@ colorListInputs.forEach((colorListInput) => {
 });
 
 
+
+
 /* =============================
     새로고침 할 때
 ============================= */
 localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
 const savedColorList = JSON.parse(localStorage.getItem(KEY_COLOR_LIST));
 const savedList_inputsList = JSON.parse(localStorage.getItem("list inputs"));
+
+showCurrentColor();
 if (savedColorList !== null) {
     /* 저장된 컬러 리스트와 일대일대응 시키기 */
     for (let i = 0; i < savedColorList.length; i++) {
@@ -228,8 +230,19 @@ if (savedColorList !== null) {
         colorListInputs[i].value = savedList_inputsList[i];
     }
 }
-showCurrentColor();
+/* 루틴 색깔로 칠하기 */
+for (let i = 1; i < 8; i++) { // colorRoutineKitRows[0]는 시간 행이라 i = 1부터
+    const savedColorRoutineKitRow = JSON.parse(localStorage.getItem(`day${i}`));
+    if (savedColorRoutineKitRow !== null) {
+        const colorRoutineKitRow_routineBoxs = colorRoutineKitRows[i].querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
+        colorRoutineKitRow_routineBoxs.forEach((routineBox, routineBox_index) => {
+            routineBox.style.backgroundColor = savedColorRoutineKitRow[routineBox_index];
+        })
+        console.log(`day${i} 그리기 성공`);
+    }
+}
 /* 컬러 팔레트 색깔들 보여주기 */
-colorPalette_colors.forEach((colorPalette_color, index) => {
-    colorPalette_color.style.backgroundColor = colors[index];
+colorPalette_colors.forEach((colorPaletteColor, colorPaletteColor_index) => {
+    colorPaletteColor.style.backgroundColor = colors[colorPaletteColor_index];
 });
+
