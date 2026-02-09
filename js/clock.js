@@ -1,4 +1,4 @@
-const clock = document.querySelector("#clock span");
+const clock = document.querySelector("#clock");
 
 
 function getClock(){
