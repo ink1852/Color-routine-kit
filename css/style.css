@@ -1,7 +1,7 @@
 @import "reset.css";
 
 *{
-    color: rgb(174, 174, 174);
+    color: rgb(255, 255, 255);
 }
 
 span{
@@ -13,6 +13,11 @@ span{
     --default-size: 45px;
     --default-color: #00000000;
     --info-box: calc((var(--default-size)/2)*3);
+
+    /* 글래스모피즘*/
+    --glass-border-color: rgba( 255, 255, 255, 0.18 );
+    --glass-border: 1px solid var(--glass-border-color);
+    --glass-blur: blur(5px);
 }
 
 /* ==== Default ==== */
@@ -22,7 +27,8 @@ span{
     left: 0;
     width: 100%;
     height: 100vh;
-    filter: brightness(60%);
+    filter: brightness(85%);
+    /* filter: blur(2px); */
     z-index: -99;
 }
 #color-routine-kit{
@@ -32,15 +38,17 @@ span{
     /*== 전체 너비 ==*/
     width: calc(var(--info-box) + var(--default-size)*4*6);
     /*============*/
-
 }
 header,main,footer{
     margin-top: var(--default-size);
 }
 footer{
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     height: calc(var(--default-size)*6);
-    border: 1px solid white !important;;
+    border: var(--glass-border);
 }
 input {
     margin: 0;
@@ -62,6 +70,7 @@ input {
     font-weight: bold;
 
     box-sizing: border-box;
+    border: var(--glass-border);
 }
 .hidden {
     display: none;
@@ -84,6 +93,9 @@ input {
 .color-list {
     display: flex;
     align-items: center;
+
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
 }
 .color-list__color-component {
     display: flex;
@@ -97,11 +109,13 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: var(--default-size); 
     height: var(--default-size);
-    border: 1px solid;
+
     box-sizing: border-box;
     background-color: var(--default-color);
+    border: var(--glass-border);
 }
 .color-dot {
     width: calc((var(--default-size)/4)*3);
@@ -115,39 +129,38 @@ input {
 
 /* ==== color-routine-kit, clock, 일주일 네이밍 ====*/
 .color-routine-kit__info{
+    position: relative;
     display: flex;
     justify-content: space-between;
     margin-bottom: var(--default-size);
+
 }
 .color-routine-kit__info--color-routine-kit{
     width: calc(var(--default-size)*8);
-    border: 1px solid white !important;;
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
 }
 .color-routine-kit__info--color-routine-kit span{
     font-size: 32px;
     font-family:'Times New Roman';
-    color: white !important;
 }
 #clock{
-    position: relative;
     bottom: 2px;
 
     width: calc(var(--default-size)*5);
-    font-size: 40px;
-
-    color: white !important;
+    font-size: var(--default-size);
 }
 #weekname-form{
     display: flex;
     align-items: center;
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
 }
 #weekname-form span{
     width: calc(var(--default-size)*6);
-    color: white !important;
 }
 #weekname-form input{
     width: calc(var(--default-size)*4);
-    color: white !important;
 }
 
 
@@ -159,6 +172,9 @@ input {
     display: flex;
     border: 1px solid;
     box-sizing: border-box;
+
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
 }
 /* ==== 루틴 시간표 - 시간 ==== */
 .time-row__hours{
@@ -195,7 +211,7 @@ input {
     height: var(--default-size) - 1px; /* border 문제 때문에 1px 빼야 됨*/
 }
 .routine-box:nth-of-type(odd){
-    border-left: 1px solid;
+    border-left: var(--glass-border);
 }
 
 
@@ -221,7 +237,7 @@ input {
     height: var(--default-size);
     border-radius: 8px;
     margin: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
     display: flex;
     justify-content: center;
@@ -230,36 +246,6 @@ input {
 .color-palette__color span{
     font-size: 14px;
 }
-/* .color-palette__color:nth-child(1){
-    background-color: rgb(0, 139, 139);
-}
-.color-palette__color:nth-child(2){
-    background-color: rgb(174, 174, 174);
-}
-.color-palette__color:nth-child(3){
-    background-color: rgb(135, 206, 235);
-}
-.color-palette__color:nth-child(4){
-    background-color: rgb(255, 173, 187);
-}
-.color-palette__color:nth-child(5){
-    background-color: rgb(144, 238, 144);
-}
-.color-palette__color:nth-child(6){
-    background-color: rgb(255, 228, 196);
-}
-.color-palette__color:nth-child(7){
-    background-color: rgb(153, 50, 204);
-}
-.color-palette__color:nth-child(8){
-    background-color: rgb(250, 250, 210);
-}
-.color-palette__color:nth-child(9){
-    background-color: rgb(255, 140, 0);
-}
-.color-palette__color:nth-child(10){
-    background-color: rgb(76, 137, 250);
-} */
 .color-palette__color:hover{
     cursor: pointer;
     scale: 1.02;

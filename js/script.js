@@ -1,7 +1,7 @@
 "use strict";
 
 const colors = [
-    /* "#086e6e",
+    "#086e6e",
     "#b4b2b2",
     "#82b9ce",
     "#ffafb9",
@@ -9,9 +9,9 @@ const colors = [
     "#e4c599",
     "#a46dbc",
     "#e4e4a4",
-    "#cc7000",
-    "#4577d6", */
-    "#2E6666",
+    "#ed9428",
+    "#4577d6",
+    /* "#2E6666",
     "#A6A4A4",
     "#6F98A5",
     "#C79AA1",
@@ -20,7 +20,7 @@ const colors = [
     "#876B93",
     "#B8B48A",
     "#9A6A3A",
-    "#5A74A3",
+    "#5A74A3", */
     "", //지우개
 ];
 
@@ -47,19 +47,16 @@ const colorListInputs = document.querySelectorAll(".color-component__input--text
 
 
 /** 루틴 행(row)들 */
-const colorRoutineKitRows = document.querySelectorAll(".color-routine-kit-row");
+const colorRoutineKitRows = document.querySelectorAll(".color-routine-kit-row.routine-row");
 /** 루틴 박스들 */
 const routine_boxs = document.querySelectorAll(".routine-box");
-// 각 행의 루틴 박스들, colorRoutineKitRows[0]는 시간 행
-/* const colorRoutineKitRow_01_routineBoxs = colorRoutineKitRows[1].querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
-const colorRoutineKitRow_02_routineBoxs = colorRoutineKitRows[2].querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box"); */
 
 
 
 function 판별식(색깔) {
-    if(색깔 == colors[0]) {
+    if (색깔 == colors[0]) {
         return "초록색"
-    }else if (색깔 == colors[1]) {
+    } else if (색깔 == colors[1]) {
         return "회색"
     }
     else if (색깔 == colors[2]) {
@@ -86,10 +83,10 @@ function 판별식(색깔) {
     else if (색깔 == colors[9]) {
         return "파란색"
     }
-    else if (색깔 == colors[10]){
+    else if (색깔 == colors[10]) {
         return "지우개"
     }
-    else{
+    else {
         return "지우개"
     }
 }
@@ -128,19 +125,17 @@ function handleClicked_colorBox(colorDot) {
 ============================= */
 function saveRoutineRow() {
     localStorage.setItem(KEY_ROUTINE_BOX_MOUSEDOWN, false);
-    colorRoutineKitRows.forEach((colorRoutineKitRow, colorRoutineKitRow_index)=>{
-        if (colorRoutineKitRow_index !== 0) { // colorRoutineKitRow[0]은 시간 행이라 빼고 저장
-            const routineList = [];
-            const colorRoutineKitRow_routineBoxs = colorRoutineKitRow.querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
-            colorRoutineKitRow_routineBoxs.forEach((routineBox) => {
-                if (routineBox.style.backgroundColor == "") {
-                    routineList.push(""); // ""(지우개)로 저장
-                } else {
-                    routineList.push(routineBox.style.backgroundColor); //선택한 색깔로 저장
-                }
-            });
-            localStorage.setItem(`day${colorRoutineKitRow_index}`, JSON.stringify(routineList));
-        }
+    colorRoutineKitRows.forEach((colorRoutineKitRow, colorRoutineKitRow_index) => {
+        const routineList = [];
+        const colorRoutineKitRow_routineBoxs = colorRoutineKitRow.querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
+        colorRoutineKitRow_routineBoxs.forEach((routineBox) => {
+            if (routineBox.style.backgroundColor == "") {
+                routineList.push(""); // ""(지우개)로 저장
+            } else {
+                routineList.push(routineBox.style.backgroundColor); //선택한 색깔로 저장
+            }
+        });
+        localStorage.setItem(`day${colorRoutineKitRow_index}`, JSON.stringify(routineList));
     });
 }
 
@@ -241,7 +236,7 @@ if (savedColorList !== null) {
     }
 }
 /* 루틴 색깔로 칠하기 */
-for (let i = 1; i < 8; i++) { // colorRoutineKitRows[0]는 시간 행이라 i = 1부터
+for (let i = 0; i < 7; i++) {
     const savedColorRoutineKitRow = JSON.parse(localStorage.getItem(`day${i}`));
     if (savedColorRoutineKitRow !== null) {
         const colorRoutineKitRow_routineBoxs = colorRoutineKitRows[i].querySelectorAll(".color-routine-kit-row__routine-boxs .routine-box");
