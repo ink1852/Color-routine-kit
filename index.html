@@ -9,13 +9,39 @@
     <script src="js/background.js" defer></script>
     <script src="js/script.js" defer></script>
     <script src="js/clock.js" defer></script>
+    <script src="js/week-date.js" defer></script>
+    <script src="js/links.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
+    <div id="links">
+        <!-- 모달 -->
+        <div id="add-link-btn">
+            <i class="fa-solid fa-plus"></i>
+            <span>Links</span>
+        </div>
+        <dialog id="modal">
+            <div class="modal-content">
+                <h2 class="modal-content__title">링크 추가</h2>
+                <input type="text" id="link-name" placeholder="사이트 이름" autocomplete="off" />
+                <input type="text" id="link-url" placeholder="https://example.com" autocomplete="off" />
+                <div id="modal-btns">
+                    <button id="save-link" value="save-link">추가</button>
+                    <form method="dialog">
+                        <button id="cancel-link" value="cancel-link">취소</button>
+                    </form>
+                </div>
 
-    <div id="nav-bar"></div>
+            </div>
+        </dialog>
 
+        <!-- links-container -->
+        <div id="links-container"></div>
+    </div>
+
+    <!-- 컬러루틴키트 -->
     <div id="color-routine-kit">
         <header>
 
@@ -584,8 +610,6 @@
             </div>
         </footer>
     </div>
-
-    <div id="shortcut-link"></div>
 
 </body>
 

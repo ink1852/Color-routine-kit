@@ -1,23 +1,12 @@
 @import "reset.css";
+@import "links.css";
+@import "var.css";
 
 *{
     color: rgb(255, 255, 255);
 }
-
 span{
     user-select: none;
-}
-
-:root{
-    /* 기본 단위 */
-    --default-size: 45px;
-    --default-color: #00000000;
-    --info-box: calc((var(--default-size)/2)*3);
-
-    /* 글래스모피즘*/
-    --glass-border-color: rgba( 255, 255, 255, 0.18 );
-    --glass-border: 1px solid var(--glass-border-color);
-    --glass-blur: blur(5px);
 }
 
 /* ==== Default ==== */
@@ -49,6 +38,7 @@ footer{
     
     height: calc(var(--default-size)*6);
     border: var(--glass-border);
+    backdrop-filter: var(--glass-blur);
 }
 input {
     margin: 0;
@@ -73,7 +63,7 @@ input {
     border: var(--glass-border);
 }
 .hidden {
-    display: none;
+    display: none !important;
 }
 .color-routine-kit__title{
     font-weight: bold;
@@ -87,6 +77,29 @@ input {
     box-sizing: border-box;
 }
 
+
+
+/* ==== 즐겨찾기 ==== */
+#nav-bar{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    /* width: 280px;
+    height: 500px;
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border); */
+
+}
+.nav-bar__popup{
+    top: 20px;
+}
+.popup-component{
+    position: absolute;
+    width: calc(var(--default-size)*5);
+    height: calc(var(--default-size)*8);
+    background-color: rgba(0, 0, 0, 0.9);
+}
 
 
 /* ==== List ==== */

@@ -1,0 +1,14 @@
+:root{
+    /* 기본 단위 */
+    --default-size: 45px;
+    --default-color: #00000000;
+    --info-box: calc((var(--default-size)/2)*3);
+
+    /* 글래스모피즘*/
+    --glass-border-color: rgba( 255, 255, 255, 0.18 );
+    --glass-border: 1px solid var(--glass-border-color);
+    --glass-blur: blur(5px);
+
+    /* 모달창 */
+    --modal-button-color: rgb(25, 50, 100);
+}
