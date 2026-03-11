@@ -11,4 +11,7 @@
 
     /* 모달창 */
     --modal-button-color: rgb(25, 50, 100);
+
+    /* 드롭다운 메뉴*/
+    --dropDown-triangle-size: 8px;
 }
